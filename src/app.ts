@@ -18,7 +18,7 @@ app.use(serveEmojiFavicon("🔥"));
 app.use(
   "*",
   cors({
-    origin: "http://localhost:9999/api", // Replace with your frontend's origin
+    origin: "http://localhost:9999", // Replace with your frontend's origin
     allowMethods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
     allowHeaders: ["Content-Type", "Authorization", "Cookie"], // Allow specific headers
   })
@@ -29,15 +29,15 @@ app.onError(onError);
 
 app.route("/todo", todoRoute);
 
-// app.doc("/doc", {
-//   openapi: "3.0.0",
-//   info: {
-//     title: "Todo API",
-//     version: packageJSON.version,
-//     description:
-//       "This is the Todo API documentation. It provides endpoints to manage your todo items, including creating, updating, deleting, and retrieving todos. The API is designed to be simple and easy to use, with clear and concise endpoints. Authentication is required for most operations, and responses are provided in JSON format.",
-//   },
-// });
+app.doc("/doc", {
+  openapi: "3.0.0",
+  info: {
+    title: "Todo API",
+    version: packageJSON.version,
+    description:
+      "This is the Todo API documentation. It provides endpoints to manage your todo items,  including creating, updating, deleting, and retrieving todos. The API is designed to be simple and easy to use, with clear and concise endpoints. Authentication is required for most operations, and responses are provided in JSON format.",
+  },
+});
 
 app.get("/", (c) => {
   return c.json({
