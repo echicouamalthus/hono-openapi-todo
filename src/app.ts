@@ -45,20 +45,20 @@ app.get("/", (c) => {
   });
 });
 
-// app.get(
-//   "/reference",
-//   apiReference({
-//     pageTitle: "Todo Api Reference",
-//     theme: "saturn",
-//     layout: "classic",
-//     defaultHttpClient: {
-//       targetkey: "javascript",
-//       clientkey: "axios",
-//     },
-//     spec: {
-//       url: "/doc",
-//     },
-//   })
-// );
+app.get(
+  "/reference",
+  apiReference({
+    pageTitle: "Todo Api Reference",
+    theme: "saturn",
+    layout: "classic",
+    defaultHttpClient: {
+      targetkey: "javascript",
+      clientkey: "axios",
+    },
+    spec: {
+      url: "/doc",
+    },
+  })
+);
 
 export default app;
