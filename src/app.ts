@@ -7,6 +7,7 @@ import packageJSON from "../package.json";
 import { OpenAPIHono } from "@hono/zod-openapi";
 
 import { app as todoRoute } from "./routes/todo";
+import { swaggerUI } from "@hono/swagger-ui";
 
 const app = new OpenAPIHono({
   strict: false,
@@ -45,20 +46,22 @@ app.get("/", (c) => {
   });
 });
 
-app.get(
-  "/reference",
-  apiReference({
-    pageTitle: "Todo Api Reference",
-    theme: "saturn",
-    layout: "classic",
-    defaultHttpClient: {
-      targetkey: "javascript",
-      clientkey: "axios",
-    },
-    spec: {
-      url: "/doc",
-    },
-  })
-);
+app.get("/ui", swaggerUI({ url: "/doc" }));
+
+// app.get(
+//   "/reference",
+//   apiReference({
+//     pageTitle: "Todo Api Reference",
+//     theme: "saturn",
+//     layout: "classic",
+//     defaultHttpClient: {
+//       targetkey: "javascript",
+//       clientkey: "axios",
+//     },
+//     spec: {
+//       url: "/doc",
+//     },
+//   })
+// );
 
 export default app;
