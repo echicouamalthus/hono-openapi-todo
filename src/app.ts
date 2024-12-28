@@ -11,7 +11,7 @@ import { app as todoRoute } from "./routes/todo";
 const app = new OpenAPIHono({
   strict: false,
   defaultHook,
-}).basePath("/api");
+});
 
 app.use(serveEmojiFavicon("🔥"));
 
@@ -43,7 +43,7 @@ app.get("/", (c) => {
   });
 });
 
-// app.route("/todo", todoRoute);
+app.route("/todo", todoRoute);
 
 // app.get(
 //   "/reference",
