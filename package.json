@@ -1,0 +1,22 @@
+{
+  "name": "todo-api-with-hono-openapi",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "build": "tsc",
+    "deploy": "vercel",
+    "vercel-build": "echo hello"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@hono/zod-openapi": "^0.18.3",
+    "@scalar/hono-api-reference": "^0.5.165",
+    "hono": "^4.6.12",
+    "stoker": "^1.4.2",
+    "tsc-alias": "^1.8.10"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
