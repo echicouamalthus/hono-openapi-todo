@@ -27,15 +27,15 @@ app.use(
 app.notFound(notFound);
 app.onError(onError);
 
-app.doc("/doc", {
-  openapi: "3.0.0",
-  info: {
-    title: "Todo API",
-    version: packageJSON.version,
-    description:
-      "This is the Todo API documentation. It provides endpoints to manage your todo items, including creating, updating, deleting, and retrieving todos. The API is designed to be simple and easy to use, with clear and concise endpoints. Authentication is required for most operations, and responses are provided in JSON format.",
-  },
-});
+// app.doc("/doc", {
+//   openapi: "3.0.0",
+//   info: {
+//     title: "Todo API",
+//     version: packageJSON.version,
+//     description:
+//       "This is the Todo API documentation. It provides endpoints to manage your todo items, including creating, updating, deleting, and retrieving todos. The API is designed to be simple and easy to use, with clear and concise endpoints. Authentication is required for most operations, and responses are provided in JSON format.",
+//   },
+// });
 
 app.get("/", (c) => {
   return c.json({
@@ -43,22 +43,22 @@ app.get("/", (c) => {
   });
 });
 
-app.route("/todo", todoRoute);
+// app.route("/todo", todoRoute);
 
-app.get(
-  "/reference",
-  apiReference({
-    pageTitle: "Todo Api Reference",
-    theme: "saturn",
-    layout: "classic",
-    defaultHttpClient: {
-      targetkey: "javascript",
-      clientkey: "axios",
-    },
-    spec: {
-      url: "/api/doc",
-    },
-  })
-);
+// app.get(
+//   "/reference",
+//   apiReference({
+//     pageTitle: "Todo Api Reference",
+//     theme: "saturn",
+//     layout: "classic",
+//     defaultHttpClient: {
+//       targetkey: "javascript",
+//       clientkey: "axios",
+//     },
+//     spec: {
+//       url: "/api/doc",
+//     },
+//   })
+// );
 
 export default app;

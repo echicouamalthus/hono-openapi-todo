@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "tsc",
+    "buid": "tsc && tsc-alias",
     "deploy": "vercel",
     "vercel-build": "echo hello"
   },
