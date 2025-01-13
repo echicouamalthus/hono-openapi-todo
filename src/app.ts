@@ -2,7 +2,7 @@ import { cors } from "hono/cors";
 import { defaultHook } from "stoker/openapi";
 import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
 
-// import { apiReference } from "@scalar/hono-api-reference";
+import { apiReference } from "@scalar/hono-api-reference";
 import packageJSON from "../package.json";
 import { OpenAPIHono } from "@hono/zod-openapi";
 
@@ -48,7 +48,7 @@ app.get("/", (c) => {
   return c.json({
     message: `Welcome to the Todo API! 🔥 You can find the API documentation at ${
       env.NODE_ENV === "production"
-        ? env.BASE_URL_API
+        ? env.BASE_URL_API + "/reference"
         : "http://localhost:9999/api/reference"
     }`,
   });
@@ -56,20 +56,20 @@ app.get("/", (c) => {
 
 app.get("/ui", swaggerUI({ url: "/doc" }));
 
-// app.get(
-//   "/reference",
-//   apiReference({
-//     pageTitle: "Todo Api Reference",
-//     theme: "saturn",
-//     layout: "classic",
-//     defaultHttpClient: {
-//       targetkey: "javascript",
-//       clientkey: "axios",
-//     },
-//     spec: {
-//       url: "/doc",
-//     },
-//   })
-// );
+app.get(
+  "/reference",
+  apiReference({
+    pageTitle: "Todo Api Reference",
+    theme: "saturn",
+    layout: "classic",
+    defaultHttpClient: {
+      targetkey: "javascript",
+      clientkey: "axios",
+    },
+    spec: {
+      url: "/doc",
+    },
+  })
+);
 
 export default app;
