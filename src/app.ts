@@ -2,12 +2,13 @@ import { cors } from "hono/cors";
 import { defaultHook } from "stoker/openapi";
 import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
 
-import { apiReference } from "@scalar/hono-api-reference";
+// import { apiReference } from "@scalar/hono-api-reference";
 import packageJSON from "../package.json";
 import { OpenAPIHono } from "@hono/zod-openapi";
 
 import { app as todoRoute } from "./routes/todo";
 import { swaggerUI } from "@hono/swagger-ui";
+import env from "./env";
 
 const app = new OpenAPIHono({
   strict: false,
@@ -19,7 +20,10 @@ app.use(serveEmojiFavicon("🔥"));
 app.use(
   "*",
   cors({
-    origin: "http://localhost:9999", // Replace with your frontend's origin
+    origin:
+      env.NODE_ENV === "production"
+        ? env.BASE_URL_API
+        : "http://localhost:9999/api", // Replace with your frontend's origin
     allowMethods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
     allowHeaders: ["Content-Type", "Authorization", "Cookie"], // Allow specific headers
   })
@@ -42,7 +46,11 @@ app.doc("/doc", {
 
 app.get("/", (c) => {
   return c.json({
-    message: `Welcome to the Todo API! 🔥 You can find the API documentation at http://localhost:9999/api/reference`,
+    message: `Welcome to the Todo API! 🔥 You can find the API documentation at ${
+      env.NODE_ENV === "production"
+        ? env.BASE_URL_API
+        : "http://localhost:9999/api/reference"
+    }`,
   });
 });
 

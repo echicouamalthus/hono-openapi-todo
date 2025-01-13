@@ -1,10 +1,15 @@
 import { serve } from "@hono/node-server";
 
 import app from "./app";
+import env from "./env";
 
-const port = 9999;
+const port = env.PORT;
 
-console.log(`Server is running on port http://localhost:${port}/api`);
+if (env.NODE_ENV === "developpment") {
+  console.log(`Server is running on port http://localhost:${port}/api`);
+} else {
+  console.log(`Server is running on port ${env.BASE_URL_API}`);
+}
 
 serve({
   fetch: app.fetch,
