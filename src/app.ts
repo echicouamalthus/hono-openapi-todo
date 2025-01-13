@@ -48,8 +48,8 @@ app.get("/", (c) => {
   return c.json({
     message: `Welcome to the Todo API! 🔥 You can find the API documentation at ${
       env.NODE_ENV === "production"
-        ? env.BASE_URL_API + "/reference"
-        : "http://localhost:9999/api/reference"
+        ? env.BASE_URL_API + "/ui"
+        : "http://localhost:9999/api/ui"
     }`,
   });
 });
