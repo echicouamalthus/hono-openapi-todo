@@ -44,7 +44,7 @@ app.doc("/doc", {
   },
 });
 
-app.get("/", (c) => {
+app.get("/api/", (c) => {
   return c.json({
     message: `Welcome to the Todo API! 🔥 You can find the API documentation at ${
       env.NODE_ENV === "production"
