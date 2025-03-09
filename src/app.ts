@@ -13,7 +13,7 @@ import env from "./env";
 const app = new OpenAPIHono({
   strict: false,
   defaultHook,
-}).basePath("/api");
+});
 
 app.use(serveEmojiFavicon("🔥"));
 
@@ -23,7 +23,7 @@ app.use(
     origin:
       env.NODE_ENV === "production"
         ? env.BASE_URL_API
-        : "http://localhost:9999/api", // Replace with your frontend's origin
+        : "http://localhost:9999", // Replace with your frontend's origin
     allowMethods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
     allowHeaders: ["Content-Type", "Authorization", "Cookie"], // Allow specific headers
   })
@@ -44,17 +44,17 @@ app.doc("/doc", {
   },
 });
 
-app.get("/api/", (c) => {
+app.get("/", (c) => {
   return c.json({
     message: `Welcome to the Todo API! 🔥 You can find the API documentation at ${
       env.NODE_ENV === "production"
         ? env.BASE_URL_API + "ui"
-        : "http://localhost:9999/api/ui"
+        : "http://localhost:9999/ui"
     }`,
   });
 });
 
-app.get("/ui", swaggerUI({ url: "/api/doc" }));
+app.get("/ui", swaggerUI({ url: "/doc" }));
 
 // app.get(
 //   "/reference",
