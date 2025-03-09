@@ -13,7 +13,7 @@ import env from "./env";
 const app = new OpenAPIHono({
   strict: false,
   defaultHook,
-});
+}).basePath("/api");
 
 app.use(serveEmojiFavicon("🔥"));
 
@@ -54,7 +54,7 @@ app.get("/", (c) => {
   });
 });
 
-app.get("/ui", swaggerUI({ url: "/doc" }));
+app.get("/ui", swaggerUI({ url: "/api/doc" }));
 
 // app.get(
 //   "/reference",
